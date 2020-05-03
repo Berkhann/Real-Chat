@@ -3,12 +3,9 @@
   "description": "",
   "main": "",
   "authors": [
-    "Berkhan Halaçoğlu"
+    "Berkhan <berkhanhalacoglu@hotmail.com>"
   ],
   "license": "MIT",
-  "keywords": [
-    "chat"
-  ],
   "homepage": "https://github.com/Berkhann/Real-Chat",
   "dependencies": {
     "angular": "^1.7.9"
