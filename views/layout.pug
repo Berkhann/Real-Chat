@@ -4,4 +4,9 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
+  div(ng-app="real-chat",ng-cloak)
     block content
+
+  block javascripts
+    scripts(src="/angular/angular.min.js")
+    scripts(src="/javascripts/main.js")

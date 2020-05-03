@@ -1,0 +1,16 @@
+{
+  "name": "real-chat",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Berkhan Halaçoğlu"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "chat"
+  ],
+  "homepage": "https://github.com/Berkhann/Real-Chat",
+  "dependencies": {
+    "angular": "^1.7.9"
+  }
+}
