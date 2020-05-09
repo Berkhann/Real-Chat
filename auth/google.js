@@ -16,9 +16,9 @@ passport.use(
     User.findOrCreate({
         'googleId':data.id
     },{
-        name:data.name.givenName,
-        surname:data.name.falmilyName,
-        profilePhotoUrl:data.picture
+        name:data.given_name,
+        surname:data.family_name,
+        profilePhotoUrl:data.picture + '0'
     },(err,user)=>{
         return done(err,user);
     });
