@@ -8,8 +8,8 @@ const userSchema = new Schema({
         unique:true
     },
     name:String,
-    surName,
+    surname:String,
     profilePhotoUrl:String
 });
 
-module.exports = mongoose.Schem('users',userSchema);
+module.exports = mongoose.model('users',userSchema);
