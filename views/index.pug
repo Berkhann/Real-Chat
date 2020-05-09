@@ -2,17 +2,20 @@ extends layout
 
 append stylesheets
   link(rel='stylesheet', href='/stylesheets/index.css')
+  link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css')
 
 block content
-  div(ng-controller='indexController')
+  div
   .modal
     .modal__inner
       .modal__header
-        h2 Welcome, please login.
+        h2 Merhaba, lütfen giriş yapın.
       .modal__footer
         a(href='#')
-          i.fa.fa-facebook(aria-hidden='true')
-          | Login with Facebook
+          i.fab.fa-google-plus-g(aria-hidden='true')
+          |  ile giriş yap
+
+
 
 append javascripts
     script(src="/javascripts/controller/indexController.js")
