@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "bower": "^1.8.8",
+    "connect-redis": "^4.0.4",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^8.2.0",
@@ -19,7 +20,8 @@
     "morgan": "~1.9.1",
     "passport": "^0.4.1",
     "passport-google-oauth20": "^2.0.0",
-    "pug": "^2.0.4"
+    "pug": "^2.0.4",
+    "redis": "^3.0.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.3"
