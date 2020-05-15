@@ -27,15 +27,32 @@ Users.prototype.upsert = function(connectionId,meta){// aktif kullanıcıları H
 };
 
 Users.prototype.remove = function(_id){
-    console.log('DISC'+ _id);
     this.client.hdel(
         'online',
         _id,
         err=>{
             if(err){
-                console.log(err);
-            }
+                console.log(err);            }
         }
+
+        
     )
     
+}
+
+Users.prototype.list = function (callback){
+    let active = [];
+
+    this.client.hgetall('online',function(err,users){
+        if(err){
+            console.log(err);
+            return callback([]);
+        }
+
+        for(let user in users){
+            active.push(JSON.parse(users.user));
+        }
+
+        return callback(active);
+    })
 }
