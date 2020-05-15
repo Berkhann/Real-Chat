@@ -25,3 +25,17 @@ Users.prototype.upsert = function(connectionId,meta){// aktif kullanıcıları H
         }
     )
 };
+
+Users.prototype.remove = function(_id){
+    console.log('DISC'+ _id);
+    this.client.hdel(
+        'online',
+        _id,
+        err=>{
+            if(err){
+                console.log(err);
+            }
+        }
+    )
+    
+}
