@@ -2,9 +2,14 @@ const socketio = require('socket.io');
 const socketAuthorication = require('../middleware/socketAuthorization');
 const io = socketio();
 
+
 const socketApi = {
     io
 };
+
+//libs
+
+const Users = require('./lib/Users');
 
 // Soket Authorization
 io.use(socketAuthorication);
@@ -20,6 +25,7 @@ io.adapter(redisAdapter({
 
 io.on('connection', socket=>{
     console.log(socket.request.user.name + ' bağlandı.');
+    Users.upsert(socket.id,socket.request.user);
 });
 
 module.exports = socketApi;
