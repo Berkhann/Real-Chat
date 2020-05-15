@@ -50,7 +50,7 @@ Users.prototype.list = function (callback){
         }
 
         for(let user in users){
-            active.push(JSON.parse(users.user));
+            active.push(JSON.parse(users[user]));
         }
 
         return callback(active);
