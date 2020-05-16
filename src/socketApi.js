@@ -10,6 +10,8 @@ const socketApi = {
 //libs
 const Users = require('./lib/Users');
 const Rooms = require('./lib/Rooms');
+const Messages = require('./lib/Messages');
+
 
 
 // Soket Authorization
@@ -47,7 +49,11 @@ io.on('connection', socket=>{
 
 
     socket.on('newMessage',data =>{
-        console.log(data);
+        Messages.upsert({
+            ...data,
+            username: socket.request.user.name,
+            surname: socket.request.user.surname
+        });
     })
 
     socket.on('disconnect',()=>{
