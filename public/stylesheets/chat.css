@@ -463,3 +463,10 @@ ul,li{
         opacity: 1;
     }
 }
+
+.loading{
+    text-align:center;
+    font-size: 16px;
+    padding:30px
+
+}
