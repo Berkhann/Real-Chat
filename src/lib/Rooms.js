@@ -1,4 +1,5 @@
 const redisClient = require('../redisClient');
+const shortid = require('shortid');
 
 
 function Rooms(){
@@ -8,10 +9,12 @@ function Rooms(){
 module.exports = new Rooms();
 
 Rooms.prototype.upsert = function(roomName){// aktif kullanıcıları Hset 'te tutacağız
-    this.client.hset(
+const newid = shortid.generate();    
+this.client.hset(
         'rooms',
-        roomName,
+        '@Room:'+newid,
         JSON.stringify({
+            id:'@Room:'+newid,
             roomName,
             when: Date.now()
         }),
