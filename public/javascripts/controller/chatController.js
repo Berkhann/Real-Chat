@@ -1,4 +1,16 @@
-app.controller('chatController',['$scope','chatFactory',($scope,chatFactory)=>{
+app.controller('chatController',['$scope','chatFactory','userFactory',($scope,chatFactory,userFactory)=>{
+    /**
+     * initilialization
+     */
+
+     function init(){
+         userFactory.getUser().then(user=>{
+             $scope.user = user;
+         })
+     }
+
+     init();
+    
     $scope.onlineList=[];
     $scope.roomList=[];
     $scope.activeTab = 1;
@@ -7,6 +19,7 @@ app.controller('chatController',['$scope','chatFactory',($scope,chatFactory)=>{
     $scope.roomId="";
     $scope.message="";
     $scope.messages=[];
+    $scope.user={};
 
     const socket = io.connect('http://localhost:3000');
 
@@ -41,6 +54,8 @@ app.controller('chatController',['$scope','chatFactory',($scope,chatFactory)=>{
             roomId: $scope.roomId
         })
         $scope.message ="";
+
+        console.log($scope.user);
     };
 
 

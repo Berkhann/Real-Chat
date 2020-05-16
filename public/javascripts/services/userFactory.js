@@ -1,11 +1,8 @@
-app.factory('chatFactory',['$http','env',($http,env)=>{
-    const getMessages = roomId => {
+app.factory('userFactory',['$http','env',($http,env)=>{
+    const getUser = () => {
       return $http({  
-        url: env.SERVICE_URL+'/messages/list',
-        method: 'GET',
-        params: {
-            roomId
-        }
+        url: env.SERVICE_URL+'/getUser',
+        method: 'GET'
     }).then(response=>{
         return response.data;
     },(err)=>{
@@ -14,7 +11,7 @@ app.factory('chatFactory',['$http','env',($http,env)=>{
   };
 
   return {
-      getMessages
+      getUser
   }
 }]);
 
