@@ -6,6 +6,7 @@ app.controller('chatController',['$scope','chatFactory',($scope,chatFactory)=>{
     $scope.chatName ="";
     $scope.roomId="";
     $scope.message="";
+    $scope.messages=[];
 
     const socket = io.connect('http://localhost:3000');
 
@@ -29,7 +30,8 @@ app.controller('chatController',['$scope','chatFactory',($scope,chatFactory)=>{
         $scope.chatClick = true;
 
         chatFactory.getMessages(room.id).then(data=>{
-            console.log(data);
+            $scope.messages[room.id] = data;
+            console.log($scope.messages)
         })
     };
 
