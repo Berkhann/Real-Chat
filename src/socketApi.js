@@ -8,8 +8,9 @@ const socketApi = {
 };
 
 //libs
-
 const Users = require('./lib/Users');
+const Rooms = require('./lib/Rooms');
+
 
 // Soket Authorization
 io.use(socketAuthorication);
@@ -29,6 +30,11 @@ io.on('connection', socket=>{
 
     Users.list(users => {
         io.emit('onlineList',users);
+    });
+
+    //Oda oluşturma
+    socket.on('newRoom',roomName =>{
+        Rooms.upsert(roomName);
     })
 
     socket.on('disconnect',()=>{
