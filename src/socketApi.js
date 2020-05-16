@@ -35,7 +35,14 @@ io.on('connection', socket=>{
     //Oda oluşturma
     socket.on('newRoom',roomName =>{
         Rooms.upsert(roomName);
-    })
+        Rooms.list(rooms => {
+            io.emit('roomList',rooms);
+        });
+    });
+
+    Rooms.list(rooms => {
+        io.emit('roomList',rooms);
+    });
 
     socket.on('disconnect',()=>{
         Users.remove(socket.request.user._id);
