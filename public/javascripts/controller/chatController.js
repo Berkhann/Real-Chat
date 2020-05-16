@@ -43,26 +43,45 @@ app.controller('chatController',['$scope','chatFactory','userFactory',($scope,ch
         $scope.roomId=room.id;
 
         $scope.chatClick = true;
-        $scope.loadingMessages = true;
 
+        if(!$scope.messages.hasOwnProperty(room.id)){
+        $scope.loadingMessages = true;
         chatFactory.getMessages(room.id).then(data=>{
             $scope.messages[room.id] = data;
             $scope.loadingMessages = false;
         })
+        }
+        
     };
 
     $scope.newMessage = () =>{
-        socket.emit('newMessage',{
-            message:$scope.message,
-            roomId: $scope.roomId
-        })
-        $scope.message ="";
+        if($scope.message.trim() !== ''){
+            socket.emit('newMessage',{
+                message:$scope.message,
+                roomId: $scope.roomId
+            });
 
-        console.log($scope.user);
+            $scope.messages[$scope.roomId].push({
+                userId: $scope.user._id,
+                username:$scope.user.name,
+                surname:$scope.user.surname,
+                message: $scope.message
+            });
+
+            $scope.message ="";
+        }
     };
 
+    socket.on('receiveMessage',data=>{
+        $scope.messages[data.roomId].push({
+            userId: data.userId,
+            username:data.username,
+            surname:data.surname,
+            message: data.message
+        });
 
-
+        $scope.$apply();
+    })
 
 
     socket.on('roomList',rooms=>{
