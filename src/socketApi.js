@@ -44,6 +44,12 @@ io.on('connection', socket=>{
         io.emit('roomList',rooms);
     });
 
+
+
+    socket.on('newMessage',data =>{
+        console.log(data);
+    })
+
     socket.on('disconnect',()=>{
         Users.remove(socket.request.user._id);
 

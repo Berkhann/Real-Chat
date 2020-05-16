@@ -4,6 +4,8 @@ app.controller('chatController',['$scope',($scope)=>{
     $scope.activeTab = 1;
     $scope.chatClick = false;
     $scope.chatName ="";
+    $scope.roomId="";
+    $scope.message="";
 
     const socket = io.connect('http://localhost:3000');
 
@@ -23,8 +25,21 @@ app.controller('chatController',['$scope',($scope)=>{
 
     $scope.switchRoom = room =>{
         $scope.chatName = room.roomName;
+        $scope.roomId=room.id;
         $scope.chatClick = true;
     };
+
+    $scope.newMessage = () =>{
+        socket.emit('newMessage',{
+            message:$scope.message,
+            roomId: $scope.roomId
+        })
+        $scope.message ="";
+    };
+
+
+
+
 
     socket.on('roomList',rooms=>{
         $scope.roomList = rooms;
